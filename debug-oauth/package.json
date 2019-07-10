@@ -1,0 +1,27 @@
+{
+  "name": "debug-oauth",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": "8.x"
+  },
+  "scripts": {
+    "start": "supervisor -t -e \"js|css|html\" -w src/ -- src/runtimes/wrapper-dev-local.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "João Angelo",
+  "license": "ISC",
+  "dependencies": {
+    "auth0": "^2.16.0",
+    "base64-url": "^2.2.0",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
+    "handlebars": "^4.1.1"
+  },
+  "devDependencies": {
+    "pem": "^1.14.2",
+    "supervisor": "^0.12.0"
+  }
+}

@@ -1,0 +1,25 @@
+.jumbotron h2 { background-color: transparent; }
+
+.content {
+  padding: 0 2em;
+}
+
+td {
+  text-align: left;
+}
+
+.tab-content {
+    margin: 0.5em 0;
+}
+
+
+div.jsoneditor {
+    border: 0;
+    border-bottom: 2px solid black;
+    margin-top: 24px;
+}
+
+div.jsoneditor-menu {
+    border: 0;
+    background-color: black;
+}

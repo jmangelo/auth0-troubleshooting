@@ -1,0 +1,22 @@
+<html>
+
+<head>
+    <title>Working...</title>
+</head>
+
+<body>
+    <form method="post" name="hiddenform" action="{{callback}}">
+        <input type="hidden" name="SAMLResponse" value="{{response}}">
+        <input type="hidden" name="language" value="en">
+        {{#if state}}<input type="hidden" name="RelayState" value="{{state}}">{{/if}}
+        <noscript>
+            <p>Script is disabled. Click Submit to continue.</p>
+            <input type="submit" value="Submit">
+        </noscript>
+    </form>
+    <script language="javascript" type="text/javascript">
+        window.setTimeout('document.forms[0].submit()', 0);
+    </script>
+</body>
+
+</html>
