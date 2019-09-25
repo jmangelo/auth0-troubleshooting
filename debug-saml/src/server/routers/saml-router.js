@@ -103,6 +103,14 @@ module.exports = function () {
   });
 
   router.post("/authorize", (req, res) => {
+    let settings = req.cookies["settings"];
+
+    if (settings) {
+      settings = JSON.parse(settings);
+    } else {
+      settings = {};
+    }
+
     var user = JSON.parse(base64url.decode(req.body.User));
 
     var saml = {
@@ -112,21 +120,29 @@ module.exports = function () {
       acs_url: req.body.AcsUrl,
     }
 
-    var attributes = {};
+    var attributes;
 
-    var mappings = {
-      "email": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress",
-      "given_name": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname",
-      // "given_name": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/First Name",
-      "family_name": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
-      // "family_name": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/Last Name",
-    };
+    if (settings.passthrough_attributes) {
+      attributes = user;
+    } else {
+      var mappings = {
+        "email": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress",
+        "given_name": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname",
+        "family_name": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
+        "birthdate": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dateofbirth",
+        "gender": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/gender",
+        //  http://schemas.xmlsoap.org/ws/2005/05/identity/claims/homephone
+        //  http://schemas.xmlsoap.org/ws/2005/05/identity/claims/mobilephone
+      };
 
-    Object.keys(mappings).forEach(key => {
-      if (user[key]) {
-        attributes[mappings[key]] = user[key];
-      }
-    });
+      attributes = {};
+
+      Object.keys(mappings).forEach(key => {
+        if (user[key]) {
+          attributes[mappings[key]] = user[key];
+        }
+      });
+    }
 
     var options = {
       cert: fs.readFileSync(path.join(__dirname, '../keys/public')),
@@ -134,7 +150,7 @@ module.exports = function () {
       issuer: "urn:debug-saml",
       lifetimeInSeconds: 600,
       attributes: attributes,
-      nameIdentifier: user.id || user.user_id || user.sub || user.email,
+      nameIdentifier: settings.name_id_attribute ? user[settings.name_id_attribute] : user.id || user.user_id || user.sub || user.email,
       sessionIndex: uuidv4(),
     };
 

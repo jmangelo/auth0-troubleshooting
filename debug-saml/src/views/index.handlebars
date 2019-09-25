@@ -25,13 +25,15 @@
         <h3>Parsed SAML Request</h3>
         <pre id="parsed_request" style="white-space: pre-wrap;">{{parsed_request}}</pre>
         {{/if}}
-        <h3>User Info</h3>
+        <h3>User Attributes</h3>
         <div id="user"></div>
         <br />
         <center>
             <div class="btn btn-success" v-on:click="authorize">AUTHORIZE</div>
             <div class="btn btn-default" v-on:click="reset">RESET USER</div>
         </center>
+        <h3>Options</h3>
+        <div id="options"></div>
     </div>
     {{{ template-end }}}
     <!-- -->
@@ -40,7 +42,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/5.5.11/jsoneditor.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.min.js" integrity="sha256-9Nt2r+tJnSd2A2CRUvnjgsD+ES1ExvjbjBNqidm9doI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.min.js"
+        integrity="sha256-9Nt2r+tJnSd2A2CRUvnjgsD+ES1ExvjbjBNqidm9doI=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 

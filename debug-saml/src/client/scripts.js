@@ -41,6 +41,7 @@
                 editors: {
                     user: null,
                     request: null,
+                    options: null,
                 },
                 defaults: {
                     user: {
@@ -65,6 +66,10 @@
                         Audience: "",
                         AcsUrl: "",
                     },
+                    options: {
+                        passthrough_attributes: false,
+                        name_id_attribute: "",
+                    }
                 }
             };
         },
@@ -96,15 +101,27 @@
             vm.editors.user = new JSONEditor(document.getElementById("user"), { mode: "code" });
             vm.editors.user.set(vm.defaults.user);
 
+            vm.editors.options = new JSONEditor(document.getElementById("options"), { mode: "code" });
+            vm.editors.options.set(vm.defaults.options);
 
             $("#user textarea").on("blur", function () {
                 sessionStorage.setItem("e_user", JSON.stringify(vm.editors.user.get()));
+            });
+
+            $("#options textarea").on("blur", function () {
+                Cookies.set("settings", JSON.stringify(vm.editors.options.get()));
             });
 
             var user = sessionStorage.getItem("e_user");
 
             if (user) {
                 vm.editors.user.set(JSON.parse(user));
+            }
+
+            var settings = Cookies.get("settings");
+
+            if (settings) {
+                vm.editors.options.set(JSON.parse(settings));
             }
         },
         methods: {
@@ -123,6 +140,9 @@
 
                 vm.editors.user.set(vm.defaults.user);
                 sessionStorage.setItem("e_user", JSON.stringify(vm.defaults.user));
+
+                vm.editors.options.set(vm.defaults.options);
+                Cookies.set("settings", JSON.stringify(vm.editors.options.get()));
             },
         }
     };
