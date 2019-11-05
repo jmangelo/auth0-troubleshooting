@@ -19,7 +19,7 @@
     "express": "^4.16.4",
     "express-handlebars": "^3.0.2",
     "handlebars": "^4.1.1",
-    "saml": "^0.13.0",
+    "saml": "git+https://git@github.com/jmangelo/node-saml.git",
     "samlp": "^3.4.0",
     "uuid": "^3.3.2",
     "xml-crypto": "^1.4.0"

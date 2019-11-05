@@ -68,6 +68,7 @@
                     },
                     options: {
                         passthrough_attributes: false,
+                        include_public_key_in_assertion: true,
                         name_id_attribute: "",
                     }
                 }

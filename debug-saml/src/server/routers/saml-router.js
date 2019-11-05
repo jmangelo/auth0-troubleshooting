@@ -145,7 +145,6 @@ module.exports = function () {
     }
 
     var options = {
-      cert: fs.readFileSync(path.join(__dirname, '../keys/public')),
       key: fs.readFileSync(path.join(__dirname, '../keys/private')),
       issuer: "urn:debug-saml",
       lifetimeInSeconds: 600,
@@ -153,6 +152,10 @@ module.exports = function () {
       nameIdentifier: settings.name_id_attribute ? user[settings.name_id_attribute] : user.id || user.user_id || user.sub || user.email,
       sessionIndex: uuidv4(),
     };
+
+    if (settings.include_public_key_in_assertion) {
+      options.cert = fs.readFileSync(path.join(__dirname, '../keys/public'));
+    }
 
     if (saml.raw_request) {
       // SP-Initiated
