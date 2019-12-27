@@ -24,7 +24,7 @@ if (fs.existsSync(keyFileName) && fs.existsSync(certFileName)) {
   promise = Promise.resolve(options);
 } else {
   promise = new Promise((resolve, reject) => {
-    pem.createCertificate({ days: 365, commonName: host, selfSigned: true }, function (err, keys) {
+    pem.createCertificate({ days: 365, commonName: host, altNames: [host], selfSigned: true }, function (err, keys) {
       if (err) { return reject(err); }
 
       let options = {
