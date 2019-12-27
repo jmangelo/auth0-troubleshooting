@@ -97,6 +97,12 @@
                 vm.editors.request.set(qs);
             } else {
                 vm.editors.request.set(vm.defaults.request);
+
+                var request = sessionStorage.getItem("e_request");
+
+                if (request) {
+                    vm.editors.request.set(JSON.parse(request));
+                }
             }
 
             vm.editors.user = new JSONEditor(document.getElementById("user"), { mode: "code" });
@@ -104,6 +110,10 @@
 
             vm.editors.options = new JSONEditor(document.getElementById("options"), { mode: "code" });
             vm.editors.options.set(vm.defaults.options);
+
+            $("#request textarea").on("blur", function () {
+                sessionStorage.setItem("e_request", JSON.stringify(vm.editors.request.get()));
+            });
 
             $("#user textarea").on("blur", function () {
                 sessionStorage.setItem("e_user", JSON.stringify(vm.editors.user.get()));
