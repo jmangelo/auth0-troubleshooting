@@ -1,0 +1,1 @@
+web: node ./src/runtimes/wrapper-heroku.js
