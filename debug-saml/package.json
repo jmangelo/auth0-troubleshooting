@@ -22,7 +22,7 @@
     "saml": "git+https://git@github.com/jmangelo/node-saml.git",
     "samlp": "^3.4.0",
     "uuid": "^3.3.2",
-    "xml-crypto": "^1.4.0"
+    "xml-crypto": "^2.0.0"
   },
   "devDependencies": {
     "pem": "^1.14.2",
