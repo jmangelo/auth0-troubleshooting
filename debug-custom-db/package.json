@@ -21,7 +21,7 @@
     "express-handlebars": "^3.0.2",
     "filtrex": "^2.0.0",
     "handlebars": "^4.1.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "redis": "^2.8.0"
   },
   "devDependencies": {
