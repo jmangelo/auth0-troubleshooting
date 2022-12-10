@@ -16,7 +16,7 @@
     "base64-url": "^2.2.0",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.4",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-handlebars": "^3.0.2",
     "handlebars": "^4.1.1"
   },
